@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Letter</title>
+    <style>
+        body {
+            background-color: #ffe6f2; /* Light pink background */
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars from floating hearts */
+        }
+        .star {
+            position: absolute;
+            color: #ffd700; /* Gold stars */
+            font-size: 20px;
+            animation: twinkle 2s infinite;
+            pointer-events: none;
+        }
+        .star:nth-child(odd) {
+            animation-duration: 3s;
+        }
+        .star:nth-child(even) {
+            animation-duration: 4s;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        .heart {
+            position: absolute;
+            top: 0; /* Start from the top of the screen */
+            color: #ff69b4; /* Hot pink hearts */
+            font-size: 24px;
+            animation: drop 6s infinite linear;
+            pointer-events: none;
+        }
+        .heart:nth-child(odd) {
+            animation-duration: 8s;
+        }
+        .heart:nth-child(even) {
+            animation-duration: 10s;
+        }
+        @keyframes drop {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        .envelope {
+            width: 200px;
+            height: 150px;
+            background-color: #ff69b4; /* Hot pink */
+            border: 2px solid #dc143c; /* Crimson red border */
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 10; /* Above hearts and stars */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: #dc143c; /* Crimson red text */
+            font-weight: bold;
+        }
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #ff69b4;
+        }
+        .letter {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffb6c1; /* Light pink */
+            border: 2px solid #dc143c;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            z-index: 20; /* Above everything */
+        }
+        .letter .decoration {
+            font-size: 24px;
+            color: #dc143c;
+            margin-bottom: 10px;
+        }
+        .letter p {
+            color: #8b0000; /* Dark red */
+            line-height: 1.5;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #dc143c;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Twinkling stars -->
+    <div class="star" style="top: 10%; left: 15%;">⭐</div>
+    <div class="star" style="top: 20%; left: 80%;">⭐</div>
+    <div class="star" style="top: 30%; left: 5%;">⭐</div>
+    <div class="star" style="top: 40%; left: 70%;">⭐</div>
+    <div class="star" style="top: 50%; left: 25%;">⭐</div>
+    <div class="star" style="top: 60%; left: 90%;">⭐</div>
+    <div class="star" style="top: 70%; left: 10%;">⭐</div>
+    <div class="star" style="top: 80%; left: 60%;">⭐</div>
+    <div class="star" style="top: 90%; left: 35%;">⭐</div>
+
+    <!-- Dropping hearts -->
+    <div class="heart" style="left: 10%;">❤️</div>
+    <div class="heart" style="left: 20%; animation-delay: 1s;">💖</div>
+    <div class="heart" style="left: 30%; animation-delay: 2s;">💕</div>
+    <div class="heart" style="left: 40%; animation-delay: 3s;">❤️</div>
+    <div class="heart" style="left: 50%; animation-delay: 4s;">💖</div>
+    <div class="heart" style="left: 60%; animation-delay: 5s;">💕</div>
+    <div class="heart" style="left: 70%; animation-delay: 6s;">❤️</div>
+    <div class="heart" style="left: 80%; animation-delay: 7s;">💖</div>
+    <div class="heart" style="left: 90%; animation-delay: 8s;">💕</div>
+
+    <div class="envelope" onclick="openLetter()">CLICK ME 💋</div>
+    <div class="letter" id="letter">
+        <button class="close" onclick="closeLetter()">×</button>
+        <div class="decoration">💕 ❤️ 💖 ❤️ 💕</div>
+        <p>
+            Hey love ❤️,<br>
+            I just want you to know how incredibly proud I am of you. Every little thing you do, every step you take "it amazes me. Keep going, keep shining, because you can do anything you set your mind to. I believe in you so much, and I’ll always be here cheering you on. Never forget that I love you endlessly 💕.
+        </p>
+    </div>
+
+    <script>
+        function openLetter() {
+            document.getElementById('letter').style.display = 'block';
+        }
+        function closeLetter() {
+            document.getElementById('letter').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
